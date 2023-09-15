@@ -8,7 +8,7 @@ app.use(cors())
 app.use(bodyParser.json())
 
 app.listen(3001,()=>{
-    console.log("Server Online")
+    console.log("Server Started")
 })
 
 app.use("/",(req,res)=>{
