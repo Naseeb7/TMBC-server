@@ -49,6 +49,7 @@ io.on("connection", (socket) => {
     socket.on("add-user", (userId) => {
         onlineUsers.set(userId, socket.id);
         socket.broadcast.emit("online-users", [...onlineUsers.keys()]);
+        console.log([...onlineUsers.keys()])
     });
     socket.on("send-message", (data) => {
         const sendUserSocket = onlineUsers.get(data.to);
@@ -60,12 +61,6 @@ io.on("connection", (socket) => {
         const sendUserSocket = onlineUsers.get(data.to);
         if (sendUserSocket) {
             socket.to(sendUserSocket).emit("typing-data", { typing : data.typing , from : data.from })
-        }
-    });
-    socket.on("send-notification", (data) => {
-        const sendUserSocket = onlineUsers.get(data.to);
-        if (sendUserSocket) {
-            socket.to(sendUserSocket).emit("get-notification", data)
         }
     });
     socket.on("disconnect", () => {
