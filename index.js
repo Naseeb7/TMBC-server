@@ -36,7 +36,7 @@ app.use("/message", messageRoutes);
 
 const io = new Server(server, {
     cors: {
-        origin: BaseURL,
+        origin: "*",
         // origin: "http://localhost:3000",
     }
 });
